@@ -14,6 +14,10 @@ header {
     animation: gradient 5s ease infinite;
 }
 
+header img{
+    mix-blend-mode: multiply;
+}
+
 @keyframes gradient {
     0% {
         background-position: 0% 50%;
@@ -42,7 +46,7 @@ header ul{
 }
 
 header .logo img {
-    width: 40px;
+    width: 80px;
 }
 
 header ul {
@@ -75,6 +79,24 @@ header ul li a::after {
 header ul li a:hover::after {
     width: 100%;
     left: 0;
+}
+
+.Register {
+    padding: 10px;
+    color: white;
+    background-color: rgb(207, 207, 7);
+    margin: 5px;
+    text-decoration: none;
+    border-style: none;
+    border-radius: 30px;
+
+    transition-duration: 0.5s;
+}
+
+.Register:hover{
+    background-color: rgb(255, 225, 0);
+    text-shadow: 1px 1px black;
+    box-shadow: 1px 1px black;
 }
 
 .about {
