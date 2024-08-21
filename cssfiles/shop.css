@@ -1,4 +1,4 @@
-body, h1, h2, h3, p, ul {
+body{
     margin: 0;
     padding: 0;
 }
@@ -12,10 +12,6 @@ header {
     background-size: 400% 400%;
     color: white;
     animation: gradient 5s ease infinite;
-}
-
-header img{
-    mix-blend-mode: multiply;
 }
 
 @keyframes gradient {
@@ -38,6 +34,7 @@ header img{
 
 header .logo img {
     width: 80px;
+    mix-blend-mode: multiply;
 }
 
 header ul {
