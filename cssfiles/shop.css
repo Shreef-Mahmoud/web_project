@@ -37,6 +37,10 @@ header .logo img {
     mix-blend-mode: multiply;
 }
 
+header nav{
+    flex :1;   
+}
+
 header ul {
     display: flex;
     list-style: none;
@@ -128,9 +132,11 @@ header ul li a:hover::after {
 .products{
     margin-left: 10px;
     display: grid;
-    grid-template-rows: repeat(5 , 400px);
     grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: minmax(200px, auto); 
     border : 10px solid rgb(108, 108, 108) ;
+    justify-items: stretch; /* stretch items across rows */
+    align-items: stretch;
 }
 
 .product-grid{

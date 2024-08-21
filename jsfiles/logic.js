@@ -80,7 +80,7 @@ var products = [
 ];
 
 var currentPage = 0;
-var lastPage = Math.ceil(products.length / 25);
+var lastPage = Math.ceil(products.length / 20);
 
 function shopProducts() {
     var productShower = document.getElementsByClassName('products')[0];
@@ -91,9 +91,9 @@ function shopProducts() {
 
     document.getElementById("pageNumber").textContent =  textCon;
 
-    for (let i = 0 ; i < 25 ; i++)
+    for (let i = 0 ; i < 20 ; i++)
         {
-            var product = products[i + (currentPage * 25)];
+            var product = products[i + (currentPage * 20)];
 
             productShower.innerHTML += `
                 <div class="product-grid">
@@ -108,7 +108,7 @@ function shopProducts() {
 
 function addToCart(productIndex)
 {
-    confirm(`"${products[productIndex + (currentPage* 25)].name}" added to cart!`);
+    confirm(`"${products[productIndex + (currentPage* 20)].name}" added to cart!`);
 }
 
 function pageChanger(buttonId)
