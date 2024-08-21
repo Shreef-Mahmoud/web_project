@@ -117,11 +117,31 @@ header ul li a:hover::after {
     text-shadow: 0 0 3px black;
 }
 
+.productHeader {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-left: 10px;
+}
 
-table , td ,tr { 
-    border: 7px solid; 
-    border-collapse: collapse; 
-    border-color: rgb(159, 159, 159); 
-    padding: 150px; 
-    float :left; 
+.products{
+    margin-left: 10px;
+    display: grid;
+    grid-template-rows: repeat(5 , 300px);
+    grid-template-columns: repeat(5 , 250px);
+    border : 10px solid rgb(108, 108, 108) ;
+}
+
+.product-grid{
+    border : 5px solid silver;
+    padding: 10px;
+}
+
+.page{
+    text-align: center;
+}
+
+.element{
+    display: inline-block;
+    margin: 20px;
 }
