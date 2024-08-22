@@ -77,8 +77,10 @@ var products = [
     { name: "Retro Football Scarf", price: "$24.99", image: "images/product5.jpg" },
 ]; // this is the array that contains products data
 
+var searchedProducts = [].concat(products); //this array is the product data after being searched
+
 var currentPage = 0; // this contains the page number minus one
-var lastPage = Math.ceil(products.length / 20); // this is the number of pages calc by the array size
+var lastPage = Math.ceil(searchedProducts.length / 20); // this is the number of pages calc by the array size
 
 
 window.onscroll = function () { checkScrollPosition() }; // runs the function when page is scrolled
@@ -106,9 +108,18 @@ function shopProducts() {
 
     document.getElementById("pageNumber").textContent = textCon; //adds it to the html
 
+    if(searchedProducts.length == 0)
+    {
+        productShower.innerHTML += `
+                <div class="product-grid">
+                    <h1> There is no Products </h1>
+                </div>
+            `;
+    }
+    else
+    {
     for (let i = 0; i < 20; i++) {
-        var product = products[i + (currentPage * 20)];
-
+        var product = searchedProducts[i + (currentPage * 20)];
         productShower.innerHTML += `
                 <div class="product-grid">
                     <img src="${product.image}" alt="${product.name}">
@@ -118,10 +129,11 @@ function shopProducts() {
                 </div>
             `;
     } // shows twenty products in grid and sends it to the html
+    }
 }
 
 function addToCart(productIndex) {
-    confirm(`"${products[productIndex + (currentPage * 20)].name}" added to cart!`);
+    confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
     //confirms the payment by saying the bought product
 }
 
@@ -144,3 +156,30 @@ function pageChanger(buttonId) {
     }
     shopProducts(); //shows the new products to the user
 }
+
+function search(searchId)
+{
+    var searchText = document.getElementById(searchId); // gets the search bar
+    searchedProducts = []; // empties the array
+    if(searchText.value == "")
+    {
+        searchedProducts = [].concat(products);
+        document.getElementById("serachlabel").innerHTML = "Search";// changes label text to Search
+    }
+    else
+    {
+        products.forEach(product => {
+            if(product.name.toLowerCase().indexOf(searchText.value.toLowerCase()) != -1)
+            {
+                searchedProducts.push({name: product.name, price: product.price, image: product.image })
+            }
+        }); // runs on every element and checks if it contains search bar text and adds it to the other array
+        document.getElementById("serachlabel").innerHTML = ""; // changes label text to empty
+    } // checks if the searhc bar is empty
+
+    currentPage = 0; // reset page coutner
+    lastPage = Math.ceil(searchedProducts.length / 20); // calc number of pages
+
+    shopProducts(); // shows it to the user
+}
+
