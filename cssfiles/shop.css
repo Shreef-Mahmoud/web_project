@@ -126,19 +126,26 @@ header ul li a:hover::after {
 } /* making it white , increase font size and margin , put shadows */
 
 .productHeader {
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content:space-between;
     align-items: center;
-    margin-left: 10px;
 } /* making it in the same row and puting the max distance between its elements 
-    , align them verticaly center , increase left margin */
+    , align them verticaly center */
+
+.productHeader h1{
+    margin-left: 10px;
+} /* increase left margin */
+
+.productHeader input{
+    margin-right: 10px;
+} /* increase right margin */
 
 .products{
-    margin-left: 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     border : 10px solid rgb(108, 108, 108) ;
-} /* increase the margin , and put them in a grid 
+} /*  and put them in a grid 
     , making 5 colums where each column takes  1/5 of the space 
     , makeing a border around all elements (outer border)*/
 
@@ -155,4 +162,32 @@ header ul li a:hover::after {
 .element{
     display: inline-block;
     margin: 20px;
-} /* puting them in the same line *?
+} /* puting them in the same line */
+
+.page input{
+    color:white;
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    background-color: black;
+    transition: 0.7s;
+}/* round border , increase width and height , black background , transition  */
+
+.page input:hover{
+    background-color: white;
+    color: black;
+} /* changing text and background color */
+
+
+.page h2{
+    transition: 0.8s;
+}
+
+.page h2:hover{
+    scale: 1.5;
+} /* increase the size */
+
+.productHeader , .page{
+    background-image: url("/images/product-background.webp");
+    background-position: center;
+} /*adding background image and center it */
