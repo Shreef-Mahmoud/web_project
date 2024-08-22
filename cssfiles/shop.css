@@ -178,7 +178,7 @@ header ul li a:hover::after {
 
 /* increase left margin , default curser */
 
-.productHeader form{
+.productHeader form {
     width: 15rem;
 }
 
@@ -207,7 +207,7 @@ header ul li a:hover::after {
 
 /* added animation when focused for color and outline and background-color */
 
-#serachlabel{
+#serachlabel {
     text-shadow: 0 0 3px black;
     margin-right: 10px;
     font-size: large;
@@ -218,7 +218,7 @@ header ul li a:hover::after {
 
 /* added shadow , added margin , larger font , default curser */
 
-.productHeader input:focus ~ #serachlabel{
+.productHeader input:focus~#serachlabel {
     opacity: 0;
 }
 
@@ -235,17 +235,74 @@ header ul li a:hover::after {
     , makeing a border around all elements (outer border)*/
 
 .product-grid {
-    border: 5px solid silver;
+    /* border: 5px solid silver; */
     padding: 10px;
     cursor: pointer;
+    margin: 10px;
+    text-align: center;
 }
 
 /* making a border for each elements and increase the padding 
-    making pointer curser */
+    making pointer curser , adding margin , center the text */
 
-.product-grid h1 {
-    text-align: center;
+.photo {
+    position: relative;
+    border: 2px solid black;
 }
+
+/* change position , adding a border */
+
+.photo img {
+    width: 100%;
+    height: 100%;
+}
+
+/* change image width and height to fit */
+
+.productText {
+    opacity: 0;
+    position: absolute;
+    color: black;
+    width: 0%;
+    height: 0%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+    background-color: white;
+
+    transition: 0.2s ease-in-out;
+}
+
+/* aligning the text on image , adding transtion*/
+
+.photo:hover .productText {
+    opacity: 1;
+    width: 100%;
+    top: 60%;
+    height: 40%;
+}
+
+/* when hovering on photo transition activates */
+
+.productText h3 {
+    transform: translate(0%, -70%);
+}
+
+/* alinging the text in the photo */
+
+.productText p {
+    transform: translate(0%, 80%);
+}
+
+/* aliging the price in the photo */
+
+.productText button {
+    width: 100px;
+    height: 20%;
+    transform: translate(-50%, -60%);
+}
+
+/* sizing the buttom and aligning it in the photo */
 
 .page {
     text-align: center;
