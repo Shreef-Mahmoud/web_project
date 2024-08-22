@@ -1,18 +1,19 @@
 body{
     margin: 0;
     padding: 0;
-}
+} /* reset the style of the website */
 
 header {
     display: flex;
+    width: 98%;
     height: 15px;
     align-items: center;
     padding: 20px;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab , #c12121 , gold);
     background-size: 400% 400%;
-    color: white;
-    animation: gradient 5s ease infinite;
-}
+    animation: gradient 6s ease infinite;
+} /* put the header in a row and center it and making
+     multi backgorund color with animation switching between them */
 
 @keyframes gradient {
     0% {
@@ -30,34 +31,33 @@ header {
     100% {
         background-position: 0% 50%;
     }
-}
+} /*animates the motion on backgorund with keyframe */
 
 header .logo img {
     width: 80px;
-    mix-blend-mode: multiply;
-}
+} /* increase the size of the logo */
 
 header nav{
     flex :1;   
-}
+} /* make the ul for to fit the header */
 
 header ul {
     display: flex;
     list-style: none;
-    flex: 1;
     justify-content: center;
-}
+} /* make the ul in one row , remove the style , put it in the centers*/
 
 header ul li {
     padding: 20px;
-}
+} /* increase the space between list items */
 
 header ul li a {
     color: white;
     text-decoration: none;
     position: relative;
     padding-bottom: 5px;
-}
+} /* changing link color , renive underline , 
+    increasing the space between the item and underline  */
 
 header ul li a::after {
     content: "";
@@ -68,12 +68,13 @@ header ul li a::after {
     height: 2px;
     background-color: white;
     transition: width 0.3s , left 0.3s;
-}
+} /* makes underline animation by starting from the middle and shifting to the left
+    while increasing the width */
 
 header ul li a:hover::after {
     width: 100%;
     left: 0;
-}
+} /* activates Pseudo after when hover */
 
 .Register {
     padding: 10px;
@@ -84,13 +85,15 @@ header ul li a:hover::after {
     border-radius: 30px;
 
     transition: 0.5s ease-in-out;
-}
+} /* increase distance between log and sign 
+    , change background color , removing underline , round border 
+    , transition for hover */
 
 .Register:hover{
     background-color: rgb(255, 225, 0);
     text-shadow: 1px 1px black ;
     box-shadow:  1px 1px black ;
-}
+} /* change background and adding shadows */
 
 .about {
     margin: 5px 5px;
@@ -98,13 +101,14 @@ header ul li a:hover::after {
     text-align: center;
     background-image: url("/images/background_logo.jpg");
     background-position: center;
-    background-size: cover;
     border-radius: 5px;
 
     display: flex;
     flex-direction: column; 
     justify-content: center;
-}
+} /* adding margin , increaseing height , align to horizontal center 
+    , adding background image and puting it in center , round border , 
+    making display in columns and justisfy it in vertical center */
 
 
 .about h1 {
@@ -112,43 +116,43 @@ header ul li a:hover::after {
     font-size: 40px;
     margin: 20px;
     text-shadow: 0 0 3px black;
-}
+} /* making it white , increase font size and margin , put shadows */
 
 .about p {
     color: white;
     margin: 0;
     font-size: 20px;
     text-shadow: 0 0 3px black;
-}
+} /* making it white , increase font size and margin , put shadows */
 
 .productHeader {
     display: flex;
     justify-content:space-between;
     align-items: center;
     margin-left: 10px;
-    height: 50px;
-}
+} /* making it in the same row and puting the max distance between its elements 
+    , align them verticaly center , increase left margin */
 
 .products{
     margin-left: 10px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: minmax(200px, auto); 
     border : 10px solid rgb(108, 108, 108) ;
-    justify-items: stretch; /* stretch items across rows */
-    align-items: stretch;
-}
+} /* increase the margin , and put them in a grid 
+    , making 5 colums where each column takes  1/5 of the space 
+    , makeing a border around all elements (outer border)*/
 
 .product-grid{
     border : 5px solid silver;
     padding: 10px;
-}
+} /* making a border for each elements and increase the padding */
 
 .page{
     text-align: center;
-}
+} /* puting the page class in the horizontaly center  */
+
 
 .element{
     display: inline-block;
     margin: 20px;
-}
+} /* puting them in the same line *?
