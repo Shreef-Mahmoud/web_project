@@ -107,6 +107,7 @@ header ul li a:hover::after {
     margin: 5px;
     text-decoration: none;
     border-radius: 30px;
+    cursor: pointer;
 
     transition: 0.5s ease-in-out;
 }
@@ -122,6 +123,19 @@ header ul li a:hover::after {
 }
 
 /* change background and adding shadows */
+
+#Reg{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#Reg h4{
+    margin: 0;
+    padding: 0;
+    line-height: 0.2px;
+    margin-right: 24px;
+}
 
 .about {
     margin: 5px 5px;
@@ -350,8 +364,7 @@ header ul li a:hover::after {
 
 /* increase the size */
 
-.productHeader,
-.page {
+.productHeader, .page {
     background-image: url("/images/product-background.webp");
     background-position: center;
     height: 100px;

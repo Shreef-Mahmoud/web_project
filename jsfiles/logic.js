@@ -43,7 +43,8 @@ var searchedProducts = [].concat(products); //this array is the product data aft
 
 var currentPage = 0; // this contains the page number minus one
 var lastPage = Math.ceil(searchedProducts.length / 20); // this is the number of pages calc by the array size
-
+var login = true; // boolean to check of loged in or not
+var accName = "Shreef" ; // saves account names
 
 window.onscroll = function () { checkScrollPosition() }; // runs the function when page is scrolled
 
@@ -149,3 +150,46 @@ function search(searchId)
     shopProducts(); // shows it to the user
 }
 
+function account(){
+    var regElement = document.getElementById("reg");
+    var logOutElement = document.getElementById("logOut");
+
+    if(!login)
+    {
+        regElement.innerHTML = `
+            <div>
+                <a class= "Register" id = "login1" onclick="logOut(this.id)" > Sign-Up </a>
+                <a class= "Register" id = "signup1" onclick="logOut(this.id)" > Log-In </a>
+            </div>
+        `;
+
+        logOutElement.innerHTML = "";
+    }
+    else
+    {
+        regElement.innerHTML = `
+            <div id = "Reg">
+                <h4> Welcome Back , </h4>
+                <br>
+                <h4>${accName}</h4>
+            </div>
+        `
+
+        logOutElement.innerHTML = `
+            <a class="Register" id = "log-out" onclick="logOut(this.id)"> Log-Out </a>
+        `
+    }
+    
+}
+
+function logOut(status){
+    if(status == "log-out")
+    {
+        login = false;
+    }
+    else
+    {
+        login = true;
+    }
+    account();
+}
