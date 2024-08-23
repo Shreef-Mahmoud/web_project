@@ -286,12 +286,14 @@ header ul li a:hover::after {
 
 .productText h3 {
     transform: translate(0%, -70%);
+    cursor: default;
 }
 
 /* alinging the text in the photo */
 
 .productText p {
     transform: translate(0%, 80%);
+    cursor: default;
 }
 
 /* aliging the price in the photo */
@@ -300,6 +302,7 @@ header ul li a:hover::after {
     width: 100px;
     height: 20%;
     transform: translate(-50%, -60%);
+    cursor: pointer;
 }
 
 /* sizing the buttom and aligning it in the photo */
