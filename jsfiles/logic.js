@@ -1,7 +1,8 @@
 // Shop html Variables
-var productindexs = []; // array for the indexes that is searched
 
-var products = [
+let productindexs = []; // array for the indexes that is searched
+
+let products = [
     { name: "Manchester City 2024", price: "$49.99", image: "./images/products/product1-Front.jpg" },
     { name: "Real Madrid 2024", price: "$39.99", image: "./images/products/product2-Front.jpg" },
     { name: "Barcelona 2024", price: "$29.99", image: "./images/products/product3-front.jpeg" },
@@ -40,17 +41,15 @@ var products = [
     { name: "Barcelona 2024", price: "$29.99", image: "./images/products/product3-front.jpeg" },
 ]; // this is the array that contains products data
 
-var searchedProducts = [].concat(products); //this array is the product data after being searched
+let searchedProducts = [].concat(products); //this array is the product data after being searched
 
-var currentPage = 0; // this contains the page number minus one
-var lastPage = Math.ceil(searchedProducts.length / 20); // this is the number of pages calc by the array size
+let currentPage = 0; // this contains the page number minus one
+let lastPage = Math.ceil(searchedProducts.length / 20); // this is the number of pages calc by the array size
 
-var accName = "Shreef"; // saves account names
+let accName = "Shreef"; // saves account names
 
-var login = false; // boolean to check of loged in or not
-var admin = true; //boolean to check if admin or not
-
-
+let login = false; // boolean to check of loged in or not
+let admin = true; //boolean to check if admin or not
 
 window.onscroll = function () { checkScrollPosition() }; // runs the function when page is scrolled
 
@@ -106,28 +105,31 @@ function shopProducts() {
 }
 
 function addToCart(productIndex) {
-    confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
+    var temp = confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
     //confirms the payment
 
-    if(productindexs.length > 0)
+    if(temp)
     {
-        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-            products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
-        }
-        productindexs = [];
+        if(productindexs.length > 0)
+            {
+                if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+                    products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
+                }
+                productindexs = [];
+            }
+            else
+            {
+                if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+                    products.splice([(productIndex + (currentPage * 20))], 1);
+                }
+            }/* checks if you searched or didn't search 
+                if yes gets the index from the product indexs array and remvoes it from product array
+                if not get the index and removes it from product array*/
+        
+        
+            searchedProducts = [].concat(products); // updates seached products array
+            shopProducts(); //returns to the shop
     }
-    else
-    {
-        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-            products.splice([(productIndex + (currentPage * 20))], 1);
-        }
-    }/* checks if you searched or didn't search 
-        if yes gets the index from the product indexs array and remvoes it from product array
-        if not get the index and removes it from product array*/
-
-
-    searchedProducts = [].concat(products); // updates seached products array
-    shopProducts(); //returns to the shop
 }
 
 function pageChanger(buttonId) {
@@ -203,7 +205,7 @@ function account() {
 
         if (admin) {
             logOutElement.innerHTML += `
-                <a href = "#" class="Register"> Add Product </a>
+                <a href = "Addproduct.html" class="Register"> Add Product </a>
             `
         }// cheacks if he is an admin to add him add product button
     }
@@ -231,17 +233,20 @@ function log(status) {
 
 function removeplaceholder(value){
     document.getElementById(value).placeholder='';
-    document.getElementById(value).placeholder='';
+    // document.getElementById(value).placeholder='';
 }
+
 function submitproduct(){
     var temp=confirm("Are you sure that you need submit?");
     if(temp==true){
-    var name=document.getElementById("name").value
-    var price=document.getElementById("price").value
-    var photo=document.getElementById("photo").image
-    var newproduct={name,price,photo}
-    products.push(newproduct)}
+    var name=document.getElementById("name").value;
+    var price=document.getElementById("price").value;
+    var photo=document.getElementById("photo").image;
+    var newproduct = {name, price, image: photo};
+    products.push(newproduct);}
+    searchedProducts = [].concat(products);
 }
+
 function cancel(){
     var temp=confirm("Are you sure that you need cancel?");
     if(temp==true){
@@ -252,7 +257,7 @@ function cancel(){
     document.getElementById("quality").value='High Copy'
     document.getElementById("options").value='S'
     document.getElementById("color").value='#000000'}
-    }
+}
 
 function displayproducts() {
     const dropdownContent = document.getElementById('dropdown-content');
