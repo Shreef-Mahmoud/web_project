@@ -1,0 +1,155 @@
+image{
+    object-fit: cover;
+}
+header {
+    display: flex;
+    height: 15px;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab , #c12121 , gold);
+    background-size: 400% 400%;
+    color: white;
+    animation: gradient 5s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    25%{
+        background-position: 25% 30%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    75%{
+        background-position: 75% 20%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+header .logo img {
+    width: 80px;
+    mix-blend-mode: multiply;
+}
+header nav{  
+    margin: 100px;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    flex: 1;
+    justify-content: center;
+}
+
+header ul li {
+    padding: 20px;
+}
+
+header ul li a {
+    color: white;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+header ul li a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: width 0.3s , left 0.3s;
+}
+
+header ul li a:hover::after {
+    width: 100%;
+    left: 0;
+}
+.logout {
+    padding: 10px;
+    color: white;
+    background-color: rgb(189, 9, 9);
+    margin: 5px;
+    text-decoration: none;
+    border-radius: 30px;
+    transition: 0.5s ease-in-out;
+}
+
+.logout:hover{
+    background-color: rgb(158, 13, 13);
+    text-shadow: 1px 1px rgb(7, 6, 6) ;
+    box-shadow:  1px 1px rgb(225, 217, 217) ;
+}
+.admin-profile{
+    height: 50px;
+    width: 40px;
+    margin-left: 30px;
+    border-radius: 50px;
+}
+/* styles.css */
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.displayproducts {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 30px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.scroll-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f9f9f900;
+    border: 1px solid #dddddd00;
+    padding: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    height: 400px; /* Adjust as needed */
+    width: 500px;
+    overflow: hidden;
+}
+
+.scroll-content {
+    height: 400px; /* Adjust as needed */
+    overflow-y: auto;
+    width: 100%;
+}
+
+div img{
+    width: 50px;
+    height: 50px;
+}
+.deletebutton{
+    color: #f9f9f9;
+    border-radius: 30px;
+    background-color: #d11e1e;
+    margin-left: 10px;
+}
+.deletebutton:hover{
+    text-shadow: 1px 1px rgb(7, 6, 6) ;
+    box-shadow:  1px 1px rgb(225, 217, 217) ;
+}
+

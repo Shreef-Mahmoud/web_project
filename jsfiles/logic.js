@@ -226,3 +226,89 @@ function log(status) {
         else logins in*/
     account(); //runs the function to show the new buttons
 }
+
+/*Admin code*/
+
+function removeplaceholder(value){
+    document.getElementById(value).placeholder='';
+    document.getElementById(value).placeholder='';
+}
+function submitproduct(){
+    var temp=confirm("Are you sure that you need submit?");
+    if(temp==true){
+    var name=document.getElementById("name").value
+    var price=document.getElementById("price").value
+    var photo=document.getElementById("photo").image
+    var newproduct={name,price,photo}
+    products.push(newproduct)}
+}
+function cancel(){
+    var temp=confirm("Are you sure that you need cancel?");
+    if(temp==true){
+    document.getElementById("name").value=''
+    document.getElementById("price").value=''
+    document.getElementById("photo").value=''
+    document.getElementById("desc").value=''
+    document.getElementById("quality").value='High Copy'
+    document.getElementById("options").value='S'
+    document.getElementById("color").value='#000000'}
+    }
+
+function displayproducts() {
+    const dropdownContent = document.getElementById('dropdown-content');
+    const selectedItemButton = document.getElementById('selected-item');
+    const scrollContent = document.getElementById('scroll-content');
+
+    // Clear the current content
+    scrollContent.innerHTML = '';
+
+    // Function to handle item selection
+    function selectItem(name) {
+        selectedItemButton.textContent = name;
+        dropdownContent.style.display = 'none';  // Hide the dropdown content
+    }
+
+    // Function to delete an item
+    function deleteItem(index) {
+        products.splice(index, 1);  // Remove the item from the array
+        displayproducts();  // Refresh the displayed list
+    }
+
+    // Create and insert items into the scrollable content
+    products.forEach((item, index) => {
+        // Create a div for each item
+        const div = document.createElement('div');
+        div.className = 'item';
+
+        // Create an img element
+        const img = document.createElement('img');
+        img.src = item.image;
+
+        // Create a text node
+        const text = document.createTextNode(item.name);
+
+        // Append img and text to the div
+        div.appendChild(img);
+        div.appendChild(text);
+
+        // Add click event to handle item selection
+        div.addEventListener('click', () => selectItem(item.name));
+
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.className="deletebutton"
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation();  // Prevent triggering the selectItem when deleting
+            deleteItem(index);
+        });
+
+        // Append the delete button to the div
+        div.appendChild(deleteButton);
+
+        // Append the div to the scroll content
+        scrollContent.appendChild(div);
+    });
+
+}
+/*end admin code*/

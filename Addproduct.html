@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Football T-Shirts Store</title>
+    <link rel="stylesheet" href="add.css">
+    <script type="text/javascript" src="logic.js"></script>
+
+</head>
+
+<body background="background_logo.jpg">
+    <header>
+        <div class="logo">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAMAAACfWMssAAAAY1BMVEX///8AAAD4+Pjs7OzLy8vV1dWAgIDa2tpMTEzn5+ceHh6Hh4fd3d2hoaHz8/P8/PxiYmKoqKhpaWmampp1dXUYGBiwsLDExMRUVFQsLCwTExM+Pj66urpvb28LCwuNjY0zMzMOFsniAAAA2UlEQVRIie2S2RKDIAwAjXig1vustdD//8qKUhUFsdPHsm+QbCYJWJbBYDD8gnMxL3Vce3vObFXmFpQXJRJuaKWV7NYjdbO7bME9t/wSA3SHpATgrL+mgBEvOIYwhAopdaI7s/pYtoMB5OItxjDxGORlWWxfEA1PMluQqeaPWZQK/dEXfIgko3HmyuXSX7dIUEtH47g8qffyhmZktZSjcUqQU2ie1vKkWoQ02vjbjlaYp1ptekUR3F6wGKL29C9q4wdeLUL1o21A1dwi1e1RQhIk30sGg+FPeQOwhQdDf2OfWwAAAABJRU5ErkJggg==" alt="Store Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="projct.html">Home</a></li>
+                <li><a href="test.html">Add Product</a></li>
+                <li><a href="displayproducts.html">view All Products</a></li>
+                <li><a href="">view All Users</a></li>
+            </ul>
+        </nav>
+        <a href="" class="logout"> Log-Out </a>
+        <img class="admin-profile" src="IMG20210917172356.jpg" >
+    </header>
+    <h1>Add Product:</h1>
+    <div class="textboxs">
+      <section class="sameline">
+        Name:<input type="text" placeholder="Enter Product Name" id="name" onfocus="removeplaceholder(id)">
+        Describtion:<input type="text" placeholder="Enter Describtion for Product" id="desc" onfocus="removeplaceholder(id)">
+      </section>
+      <section class="only">
+        Price:<input type="text" placeholder="Enter Product Price" id="price" onfocus="removeplaceholder(id)">
+      </section>
+      <section class="colorbar">
+        color:<input type="color" id="color">
+        <label for="options">Size:</label>
+        <select id="options" name="options">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+            <option value="XXL">XXL</option>
+        </select>
+        <label for="quality" class="qualitylabel">Quality:</label>
+        <select  name="quality" id="quality">
+            <option value="Copy">Copy</option>
+            <option value="High Copy" selected="selected">High Copy</option>
+            <option value="Orignal">Orignal</option>
+        </select>
+    </section>
+    <section class="addphoto">
+        <label for="photo">Choose a photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*">
+    </section>
+    <section class="buttons">
+        <input type="button" value="submit" class="submit" onclick="submitproduct()">
+        <input type="button" value="cancel" class="cancel" onclick="cancel()">
+    </section>
+    </div>
+ 
+</body>
