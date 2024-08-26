@@ -1,61 +1,196 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title> About page </title>
-        <style type="text/css">
-            h1 { background-color: rgb(0, 255, 55);
+
+<head>
+    <title> About page </title>
+    <style type="text/css">
+        body{
+            margin: 0px;
+            background-image: url("images/aboutbg.jpeg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        header {
+            display: flex;
+            width: 98%;
+            height: 15px;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #c12121, gold);
+            background-size: 400% 400%;
+            animation: gradient 6s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            25% {
+                background-position: 25% 30%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            75% {
+                background-position: 75% 20%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /*animates the motion on backgorund with keyframe */
+
+        header .logo img {
+            width: 80px;
+        }
+
+        /* increase the size of the logo */
+
+        header nav {
+            flex: 1;
+        }
+
+        /* make the ul for to fit the header */
+
+        header ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+        }
+
+        /* make the ul in one row , remove the style , put it in the centers*/
+
+        header ul li {
+            padding: 20px;
+        }
+
+        /* increase the space between list items */
+
+        header ul li a {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        /* changing link color , renive underline , 
+    increasing the space between the item and underline  */
+
+        header ul li a::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 0.3s, left 0.3s;
+        }
+
+        /* makes underline animation by starting from the middle and shifting to the left
+    while increasing the width */
+
+        header ul li a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        h1 {
+            background-color: rgb(0, 255, 55);
             font-size: xx-large;
-             font-weight: bold;
-             text-align: center;
+            font-weight: bold;
+            text-align: center;
             color: antiquewhite;
             height: 100px;
             text-transform: capitalize;
             padding: 8px 0;
-             }
-            h2{
-                text-transform: capitalize;
-                text-decoration: underline;
-                text-align: left;
-                font-weight: 400;
-            }
-            p{text-transform: capitalize;}
-        </style>
-    </head>
-    <body background="images/aboutbg.jpeg">
-        <h1><strong>About</strong> <br><img src="images/Logo.png" width="50" height="30"/></h1>
-        <h2>About Us</h2><br>
-        <p> "we are 5 students from faculty of computer and information science in ASU , and that is our project in the web devalopment summer training <br> , we are inspired by our love for the football sport, and by the beginning of the football seasons , the clubs releases their new kit <br> so, this is what give us the idea of making a football t-shirts shop website" </p> <br>
-        <h2> Our Difference </h2><br>
-        <P> "Our flexability on the buying process , the availability of a large amount of types of kits  <br> , and the speed of having the new releases , all of that what makes us different from the others"</P><br>
-        <h2>Project Teammates</h2><br>
-        <ul type = "circle">
-            <li> Mohamed Elamir</li>
-            <li> Mohamed Sherif</li>
-            <li> Sherif Mahmoud</li>
-            <li> Saif Hossam</li>
-            <li> Michael Mounir</li>
+        }
 
-        </ul><br>
-        <h2>Contact Us</h2><br>
-        <details>
-            <summary> E-mails</summary>
-            <ul type ="circle">
-                <li><a href="m7mdsherif246@gmail.com">m7mdsherif246@gmail.com</a></li>
-                <li><a href="mhamedelamir1910@gmail.com">mhamedelamir1910@gmail.com</a></li>
+        h2 {
+            text-transform: capitalize;
+            text-decoration: underline;
+            text-align: left;
+            font-weight: 400;
+        }
+
+        p {
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="header">
+
+        <div class="logo">
+            <img src="images/Logo.png" alt="Store Logo">
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="Shop.html">Shop</a></li>
+                <li><a href="about.html">About Us</a></li>
             </ul>
-        </details>
-        <details> <summary> Phone Numbers</summary>
-            <ul type = "circle">
-                <li> Mohamed Sherif : 01151680876</li>
-                <li> Mohamed Elamir : 01223606786</li>
-                <li> Sherif Mahmoud : 01202913699</li>
-                <li> Saif Hossam : 01011745993</li>
+        </nav>
 
-            </ul>
-           
-        </details>
+    </header>
 
+    <h2>About Us</h2><br>
 
+    <p> "we are 5 students from faculty of computer and information science in ASU , and that is our project in the web
+        devalopment summer training <br> , we are inspired by our love for the football sport, and by the beginning of
+        the football seasons , the clubs releases their new kit <br> so, this is what give us the idea of making a
+        football t-shirts shop website" </p> <br>
 
-    </body>
+    <h2> Our Difference </h2><br>
+
+    <P> "Our flexability on the buying process , the availability of a large amount of types of kits <br> , and the
+        speed of having the new releases , all of that what makes us different from the others"</P><br>
+
+    <h2>Project Teammates</h2><br>
+
+    <ul type="circle">
+        <li> Mohamed Elamir</li>
+        <li> Mohamed Sherif</li>
+        <li> Sherif Mahmoud</li>
+        <li> Saif Hossam</li>
+        <li> Michael Mounir</li>
+
+    </ul><br>
+    <h2>Contact Us</h2><br>
+
+    <details>
+
+        <summary> E-mails</summary>
+
+        <ul type="circle">
+            <li><a href="m7mdsherif246@gmail.com">m7mdsherif246@gmail.com</a></li>
+            <li><a href="mhamedelamir1910@gmail.com">mhamedelamir1910@gmail.com</a></li>
+        </ul>
+
+    </details>
+
+    <details>
+
+        <summary> Phone Numbers</summary>
+
+        <ul type="circle">
+            <li> Mohamed Sherif : 01151680876</li>
+            <li> Mohamed Elamir : 01223606786</li>
+            <li> Sherif Mahmoud : 01202913699</li>
+            <li> Saif Hossam : 01011745993</li>
+
+        </ul>
+
+    </details>
+
+</body>
+
 </html>
