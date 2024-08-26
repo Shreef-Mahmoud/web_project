@@ -215,10 +215,10 @@ function submitproduct(){
     var temp=confirm("Are you sure that you need submit?");
 
     if(temp==true){
-    var name=document.getElementById("name").value;
-    var price=document.getElementById("price").value;
-    var photo=document.getElementById("photo").image;
-    console.log(photo);
+    var name = document.getElementById("name").value;
+    var price = document.getElementById("price").value;
+    var photo = document.getElementById("photo").value;
+
     var newproduct = {name, price, image: photo};
     products.push(newproduct);}
     searchedProducts = [].concat(products);
