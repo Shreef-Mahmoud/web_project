@@ -275,8 +275,11 @@ function displayproducts() {
 
     // Function to delete an item
     function deleteItem(index) {
+        var temp=confirm("Are you sure that you want delete "+products[index].name+"?");
+        if(temp==true){
         products.splice(index, 1);  // Remove the item from the array
-        displayproducts();  // Refresh the displayed list
+        displayproducts();
+        }  // Refresh the displayed list
     }
 
     // Create and insert items into the scrollable content
