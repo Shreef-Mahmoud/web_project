@@ -2,12 +2,12 @@
 
 let productindexs = []; // array for the indexes that is searched
 
-let products;
+let products = JSON.parse(localStorage.getItem('products'));
 
-let searchedProducts; //this array is the product data after being searched
+let searchedProducts = [].concat(products); //this array is the product data after being searched
 
 let currentPage = 0; // this contains the page number minus one
-let lastPage ; // this is the number of pages calc by the array size
+let lastPage = Math.ceil(searchedProducts.length / 20) ; // this is the number of pages calc by the array size
 
 let accName = "Shreef"; // saves account names
 
@@ -31,124 +31,112 @@ function checkScrollPosition() {
 }
 
 function shopProducts() {
-    var productShower = document.getElementsByClassName('products')[0];
-    productShower.innerHTML = "";
+    var productShower = document.getElementsByClassName('products')[0]; //gets products data
+    productShower.innerHTML = ""; //empties the html inside
 
-    // Ensure products and searchedProducts are defined and are arrays
-    if (!Array.isArray(searchedProducts)) {
-        searchedProducts = [];
-    }
-    
-    if (typeof lastPage === 'undefined' || lastPage === 0) {
-        lastPage = 1; // Default to 1 if not set
-    }
+    var pageStart = (currentPage + 1).toString(); // turns page number to string
+    var textCon = pageStart + " / " + lastPage.toString(); // make page number counter
 
-    var pageStart = (currentPage + 1).toString();
-    var textCon = pageStart + " / " + lastPage.toString();
+    document.getElementById("pageNumber").textContent = textCon; //adds it to the html
 
-    document.getElementById("pageNumber").textContent = textCon;
-
-    if (searchedProducts.length === 0) {
+    if (searchedProducts.length == 0) {
         productShower.innerHTML += `
-            <div class="product-grid">
-                <h1> There are no Products </h1>
-            </div>
-        `;
-    } else {
+                <div class="product-grid">
+                    <h1> There is no Products </h1>
+                </div>
+            `;
+    }
+    else {
         for (let i = 0; i < 20; i++) {
             var product = searchedProducts[i + (currentPage * 20)];
-            if (product) {
-                productShower.innerHTML += `
-                    <div class="product-grid">
-                        <div class="photo">
-                            <img src="${product.image}" alt="${product.name}">
-                            <div class="productText">
-                                <h3>${product.name}</h3>
-                                <p>${product.price}</p>
-                                <button class="productText" onclick="addToCart(${i})">Add to Cart</button>
-                            </div>
-                        </div>
+            productShower.innerHTML += `
+                <div class="product-grid">
+                <div class = "photo">
+                <img src="${product.image}" alt="${product.name}">
+                    <div class = "productText">
+                        <h3 >${product.name}</h3>
+                        <p >${product.price}</p>
+                        <button class= "productText" onclick="addToCart(${i})" >Add to Cart</button>
                     </div>
-                `;
-            }
-        }
-    }
+                </div>
+                </div>
+            `;
+        } // shows twenty products in grid and sends it to the html
+    }/* checks if there is products matched the search 
+    if no display there is no products
+    else display 20 products or less */
 }
 
 
 function addToCart(productIndex) {
-    var temp = confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
+    confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
     //confirms the payment
 
-    if(temp)
+    if(productindexs.length > 0)
     {
-        if(productindexs.length > 0)
-            {
-                if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-                    products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
-                }
-                productindexs = [];
-            }
-            else
-            {
-                if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-                    products.splice([(productIndex + (currentPage * 20))], 1);
-                }
-            }/* checks if you searched or didn't search 
-                if yes gets the index from the product indexs array and remvoes it from product array
-                if not get the index and removes it from product array*/
-        
-        
-            searchedProducts = [].concat(products); // updates seached products array
-            shopProducts(); //returns to the shop
+        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+            products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
+        }
+        productindexs = [];
     }
+    else
+    {
+        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+            products.splice([(productIndex + (currentPage * 20))], 1);
+        }
+    }/* checks if you searched or didn't search 
+        if yes gets the index from the product indexs array and remvoes it from product array
+        if not get the index and removes it from product array*/
+
+
+    searchedProducts = [].concat(products); // updates seached products array
+    localStorage.setItem('products', JSON.stringify(products));
+    shopProducts(); //returns to the shop
 }
 
 function pageChanger(buttonId) {
-    if (document.getElementById(buttonId).value === "Next") {
-        if (currentPage + 1 >= lastPage) {
+    if (document.getElementById(buttonId).value == "Next") {
+        if (currentPage + 1 == lastPage) {
             alert("It's The Last Page");
-        } else {
+        }
+        else {
             currentPage++;
-        }
-    } else if (document.getElementById(buttonId).value === "Back") {
-        if (currentPage <= 0) {
-            alert("It's The First Page");
-        } else {
-            currentPage--;
-        }
+        } //checks if its the last page to send alert or add a page
     }
-    shopProducts(); // Shows the new products to the user
+    else if (document.getElementById(buttonId).value == "Back") {
+        if (currentPage == 0) {
+            alert("It's The First Page");
+        }
+        else {
+            currentPage--;
+        } //checks if its the first page to send alert or remove a page
+    }
+    shopProducts(); //shows the new products to the user
 }
 
 
 function search(searchId) {
-    var searchText = document.getElementById(searchId);
-    
-    // Ensure products and searchedProducts are defined and are arrays
-    if (!Array.isArray(products)) {
-        products = [];
-    }
-    
-    searchedProducts = [];
-    productindexs = [];
-
-    if (searchText.value === "") {
+    var searchText = document.getElementById(searchId); // gets the search bar
+    searchedProducts = []; // empties the array
+    productindexs = []; // emties product indexs
+    if (searchText.value == "") {
         searchedProducts = [].concat(products);
-        document.getElementById("serachlabel").innerHTML = "Search";
-    } else {
+        document.getElementById("serachlabel").innerHTML = "Search";// changes label text to Search
+    }
+    else {
         products.forEach(function (product, i) {
-            if (product.name.toLowerCase().indexOf(searchText.value.toLowerCase()) !== -1) {
-                searchedProducts.push({ name: product.name, price: product.price, image: product.image });
+            if (product.name.toLowerCase().indexOf(searchText.value.toLowerCase()) != -1) {
+                searchedProducts.push({ name: product.name, price: product.price, image: product.image })
                 productindexs.push(i);
             }
-        });
-        document.getElementById("serachlabel").innerHTML = "";
-    }
+        }); // runs on every element and checks if it contains search bar text and adds it to the other array
+        document.getElementById("serachlabel").innerHTML = ""; // changes label text to empty
+    } // checks if the searhc bar is empty
 
-    currentPage = 0;
-    lastPage = Math.ceil(searchedProducts.length / 20);
-    shopProducts();
+    currentPage = 0; // reset page coutner
+    lastPage = Math.ceil(searchedProducts.length / 20); // calc number of pages
+
+    shopProducts(); // shows it to the user
 }
 
 function account() {
@@ -180,7 +168,7 @@ function account() {
 
         if (admin) {
             logOutElement.innerHTML += `
-                <a href = "Addproduct.html" class="Register"> Add Product </a>
+                <a href = "addproduct.html" class="Register"> Add Product </a>
             `
         }// cheacks if he is an admin to add him add product button
     }
@@ -220,8 +208,8 @@ function submitproduct(){
     var photo = document.getElementById("photo").value;
 
     var newproduct = {name, price, image: photo};
-    products.push(newproduct);}
-    searchedProducts = [].concat(products);
+    products.push(newproduct);
+    localStorage.setItem('products', JSON.stringify(products));}
 }
 
 
@@ -256,6 +244,7 @@ function displayproducts() {
         var temp=confirm("Are you sure that you want delete "+products[index].name+"?");
         if(temp==true){
         products.splice(index, 1);  // Remove the item from the array
+        localStorage.setItem('products', JSON.stringify(products));
         displayproducts();
         }  // Refresh the displayed list
     }
@@ -298,16 +287,3 @@ function displayproducts() {
 
 }
 /*end admin code*/
-
-fetch("./jsfiles/products.json")
-    .then(response => response.json())
-    .then(data => { 
-        products = data;
-        searchedProducts = [].concat(products);
-        lastPage = Math.ceil(searchedProducts.length / 20);
-        currentPage = 0; // Reset current page when data is loaded
-        shopProducts(); // Display products once data is loaded
-})
-    .catch(error => {
-        console.log('Error fetching data:', error);
-});
