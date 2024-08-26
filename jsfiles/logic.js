@@ -298,3 +298,16 @@ function displayproducts() {
 
 }
 /*end admin code*/
+
+fetch("./jsfiles/products.json")
+    .then(response => response.json())
+    .then(data => { 
+        products = data;
+        searchedProducts = [].concat(products);
+        lastPage = Math.ceil(searchedProducts.length / 20);
+        currentPage = 0; // Reset current page when data is loaded
+        shopProducts(); // Display products once data is loaded
+})
+    .catch(error => {
+        console.log('Error fetching data:', error);
+});
