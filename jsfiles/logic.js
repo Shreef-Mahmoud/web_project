@@ -2,7 +2,7 @@
 
 let productindexs = []; // array for the indexes that is searched
 
-let products = JSON.parse(localStorage.getItem('products'));
+let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
 
 let searchedProducts = [].concat(products); //this array is the product data after being searched
 
@@ -10,7 +10,6 @@ let currentPage = 0; // this contains the page number minus one
 let lastPage = Math.ceil(searchedProducts.length / 20) ; // this is the number of pages calc by the array size
 
 let accName = "Shreef"; // saves account names
-
 let login = false; // boolean to check of loged in or not
 let admin = true; //boolean to check if admin or not
 
@@ -31,7 +30,7 @@ function checkScrollPosition() {
 }
 
 function shopProducts() {
-    var productShower = document.getElementsByClassName('products')[0]; //gets products data
+    var productShower = document.getElementById('shop'); //gets products data
     productShower.innerHTML = ""; //empties the html inside
 
     var pageStart = (currentPage + 1).toString(); // turns page number to string
@@ -69,33 +68,32 @@ function shopProducts() {
 
 
 function addToCart(productIndex) {
-    confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
+    var temp = confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
     //confirms the payment
-
-    if(productindexs.length > 0)
-    {
-        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-            products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
+    if (temp) {
+        if (productindexs.length > 0) {
+            if ((productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+                products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
+            }
+            productindexs = [];
         }
-        productindexs = [];
-    }
-    else
-    {
-        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-            products.splice([(productIndex + (currentPage * 20))], 1);
-        }
-    }/* checks if you searched or didn't search 
+        else {
+            if ((productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+                products.splice([(productIndex + (currentPage * 20))], 1);
+            }
+        }/* checks if you searched or didn't search 
         if yes gets the index from the product indexs array and remvoes it from product array
         if not get the index and removes it from product array*/
 
 
-    searchedProducts = [].concat(products); // updates seached products array
-    localStorage.setItem('products', JSON.stringify(products));
+        searchedProducts = [].concat(products); // updates seached products array
+        localStorage.setItem('products', JSON.stringify(products));
+    }
     shopProducts(); //returns to the shop
 }
 
 function pageChanger(buttonId) {
-    if (document.getElementById(buttonId).value == "Next") {
+    if (buttonId == "next") {
         if (currentPage + 1 == lastPage) {
             alert("It's The Last Page");
         }
@@ -103,7 +101,7 @@ function pageChanger(buttonId) {
             currentPage++;
         } //checks if its the last page to send alert or add a page
     }
-    else if (document.getElementById(buttonId).value == "Back") {
+    else if (buttonId == "back") {
         if (currentPage == 0) {
             alert("It's The First Page");
         }
@@ -146,8 +144,8 @@ function account() {
     if (!login) {
         regElement.innerHTML = `
             <div>
-                <a class= "Register" id = "login1" onclick="log(this.id)" > Sign-Up </a>
-                <a class= "Register" id = "signup1" onclick="log(this.id)" > Log-In </a>
+                <a class= "Register" id = "login1" href = "signup.html" > Sign-Up </a>
+                <a class= "Register" id = "signup1" href = "login.html"> Log-In </a>
             </div>
         `;
 
@@ -251,6 +249,67 @@ function displayproducts() {
 
     // Create and insert items into the scrollable content
     products.forEach((item, index) => {
+        // Create a div for each item
+        const div = document.createElement('div');
+        div.className = 'item';
+
+        // Create an img element
+        const img = document.createElement('img');
+        img.src = item.image;
+
+        // Create a text node
+        const text = document.createTextNode(item.name);
+
+        // Append img and text to the div
+        div.appendChild(img);
+        div.appendChild(text);
+
+        // Add click event to handle item selection
+        div.addEventListener('click', () => selectItem(item.name));
+
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.className="deletebutton"
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation();  // Prevent triggering the selectItem when deleting
+            deleteItem(index);
+        });
+
+        // Append the delete button to the div
+        div.appendChild(deleteButton);
+
+        // Append the div to the scroll content
+        scrollContent.appendChild(div);
+    });
+
+}
+function displayusers(){
+    
+    const dropdownContent = document.getElementById('drop-content');
+    const selectedItemButton = document.getElementById('selected-item');
+    const scrollContent = document.getElementById('scrollusers-content');
+
+    // Clear the current content
+    scrollContent.innerHTML = '';
+
+    // Function to handle item selection
+    function selectItem(name) {
+        selectedItemButton.textContent = name;
+        dropdownContent.style.display = 'none';  // Hide the dropdown content
+    }
+
+    // Function to delete an item
+    function deleteItem(index) {
+        var temp=confirm("Are you sure that you want delete "+users[index].name+"?");
+    if(temp==true){
+        users.splice(index, 1);  // Remove the item from the array
+        displayproducts(); 
+     } // Refresh the displayed list
+    }
+
+    // Create and insert items into the scrollable content
+    users.forEach((item, index) => {
         // Create a div for each item
         const div = document.createElement('div');
         div.className = 'item';
