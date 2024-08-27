@@ -305,6 +305,7 @@ function displayusers(){
         var temp=confirm("Are you sure that you want delete "+users[index].name+"?");
     if(temp==true){
         users.splice(index, 1);  // Remove the item from the array
+        localStorage.setItem('users', JSON.stringify(users));
         displayusers(); 
      } // Refresh the displayed list
     }
