@@ -323,7 +323,7 @@ function displayusers(){
 
         // Append img and text to the div
         div.appendChild(username);
-       
+        username.style.marginRight = "10px";
         div.appendChild(useremail);
 
         // Add click event to handle item selection
