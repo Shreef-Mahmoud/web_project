@@ -153,3 +153,6 @@ div img{
     text-shadow: 1px 1px rgb(7, 6, 6) ;
     box-shadow:  1px 1px rgb(225, 217, 217) ;
 }
+.space{
+    margin-left: 10px;
+}

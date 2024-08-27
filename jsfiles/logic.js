@@ -325,7 +325,7 @@ function displayusers(){
         // Append img and text to the div
         div.appendChild(username);
         div.appendChild(useremail);
-        useremail.style.marginLeft = "10px";
+        useremail.className="space";
 
         // Add click event to handle item selection
         div.addEventListener('click', () => selectItem(item.name));
