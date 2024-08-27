@@ -206,8 +206,9 @@ function submitproduct(){
     var name = document.getElementById("name").value;
     var price = document.getElementById("price").value;
     var photo = document.getElementById("photo").value;
+    let myArray = photo.split("\\");
 
-    var newproduct = {name, price, image: photo};
+    var newproduct = {name, price, image: `./images/products/${myArray[myArray.length-1]}`};
     const storedProducts = localStorage.getItem("products");
 const productsArray = JSON.parse(storedProducts);
     productsArray.push(newproduct);
