@@ -320,12 +320,13 @@ function displayusers(){
         const username = document.createTextNode(item.username);
 
         // Create a text node
-        const useremail = document.createTextNode(item.email);
+        const useremail = document.createElement('span'); // Create a span element
+        useremail.className = 'space'; // Set the class name
+        useremail.textContent = item.email;
 
         // Append img and text to the div
         div.appendChild(username);
         div.appendChild(useremail);
-        useremail.className="space";
 
         // Add click event to handle item selection
         div.addEventListener('click', () => selectItem(item.name));
