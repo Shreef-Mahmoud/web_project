@@ -12,7 +12,7 @@ function shopProduct() {
             productDiv.classList.add("product");
 
             const productImg = document.createElement("img");
-            productImg.src = "./images/products/pro.jpg";
+            productImg.src = "./images/products/product1-Front.jpg";
             productImg.alt = product.name;
             productDiv.appendChild(productImg);
 
