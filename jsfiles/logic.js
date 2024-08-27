@@ -327,7 +327,7 @@ function displayusers(){
 
         // Append img and text to the div
         div.appendChild(username);
-        document.write(' ')
+        document.write(" ")
         div.appendChild(useremail);
 
         // Add click event to handle item selection
