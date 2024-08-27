@@ -2,8 +2,10 @@
 
 let productindexs = []; // array for the indexes that is searched
 
-let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
 
+
+let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
+// if(localStorage.getItem("products")==null){ products = "[]"}
 let searchedProducts = [].concat(products); //this array is the product data after being searched
 
 let currentPage = 0; // this contains the page number minus one
@@ -206,8 +208,10 @@ function submitproduct(){
     var photo = document.getElementById("photo").value;
 
     var newproduct = {name, price, image: photo};
-    products.push(newproduct);
-    localStorage.setItem('products', JSON.stringify(products));}
+    const storedProducts = localStorage.getItem("products");
+const productsArray = JSON.parse(storedProducts);
+    productsArray.push(newproduct);
+    localStorage.setItem('products', JSON.stringify(productsArray));}
 }
 
 
