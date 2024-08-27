@@ -3,7 +3,7 @@ window.onload = function() {
 };
 
 function shopProduct() {
-    var productsSection = document.getElementsByClassName("pro")[0];
+    var productsSection = document.getElementsByClassName("scrollmenu")[0];
 
         console.log(products)
     if (productsSection) {
@@ -12,7 +12,7 @@ function shopProduct() {
             productDiv.classList.add("product");
 
             const productImg = document.createElement("img");
-            productImg.src = product.image;
+            productImg.src = "./images/products/pro.jpg";
             productImg.alt = product.name;
             productDiv.appendChild(productImg);
 
@@ -21,10 +21,9 @@ function shopProduct() {
             productDiv.appendChild(productName);
 
             const productPrice = document.createElement("p");
-            productPrice.textContent = product.price;
+            productPrice.textContent = product.price+"$";
             productDiv.appendChild(productPrice);
 
-            // Append the created productDiv to the products section
             productsSection.appendChild(productDiv);
         });
     } else {
