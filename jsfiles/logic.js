@@ -146,8 +146,8 @@ function account() {
     if (!login) {
         regElement.innerHTML = `
             <div>
-                <a class= "Register" id = "login1" onclick="log(this.id)" > Sign-Up </a>
-                <a class= "Register" id = "signup1" onclick="log(this.id)" > Log-In </a>
+                <a class= "Register" id = "login1" href = "signup.html" > Sign-Up </a>
+                <a class= "Register" id = "signup1" href = "login.html"> Log-In </a>
             </div>
         `;
 
