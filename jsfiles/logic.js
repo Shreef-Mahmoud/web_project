@@ -286,4 +286,65 @@ function displayproducts() {
     });
 
 }
+function displayusers(){
+    
+    const dropdownContent = document.getElementById('drop-content');
+    const selectedItemButton = document.getElementById('selected-item');
+    const scrollContent = document.getElementById('scrollusers-content');
+
+    // Clear the current content
+    scrollContent.innerHTML = '';
+
+    // Function to handle item selection
+    function selectItem(name) {
+        selectedItemButton.textContent = name;
+        dropdownContent.style.display = 'none';  // Hide the dropdown content
+    }
+
+    // Function to delete an item
+    function deleteItem(index) {
+        var temp=confirm("Are you sure that you want delete "+users[index].name+"?");
+    if(temp==true){
+        users.splice(index, 1);  // Remove the item from the array
+        displayproducts(); 
+     } // Refresh the displayed list
+    }
+
+    // Create and insert items into the scrollable content
+    users.forEach((item, index) => {
+        // Create a div for each item
+        const div = document.createElement('div');
+        div.className = 'item';
+
+        // Create an img element
+        const img = document.createElement('img');
+        img.src = item.image;
+
+        // Create a text node
+        const text = document.createTextNode(item.name);
+
+        // Append img and text to the div
+        div.appendChild(img);
+        div.appendChild(text);
+
+        // Add click event to handle item selection
+        div.addEventListener('click', () => selectItem(item.name));
+
+        // Create a delete button
+        const deleteButton = document.createElement('button');
+        deleteButton.className="deletebutton"
+        deleteButton.textContent = 'Delete';
+        deleteButton.addEventListener('click', (e) => {
+            e.stopPropagation();  // Prevent triggering the selectItem when deleting
+            deleteItem(index);
+        });
+
+        // Append the delete button to the div
+        div.appendChild(deleteButton);
+
+        // Append the div to the scroll content
+        scrollContent.appendChild(div);
+    });
+
+}
 /*end admin code*/
