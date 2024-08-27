@@ -4,7 +4,6 @@ let productindexs = []; // array for the indexes that is searched
 
 var users =JSON.parse(localStorage.getItem('users')); //loads users data
 
-
 let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
 // if(localStorage.getItem("products")==null){ products = "[]"}
 let searchedProducts = [].concat(products); //this array is the product data after being searched
@@ -12,9 +11,10 @@ let searchedProducts = [].concat(products); //this array is the product data aft
 let currentPage = 0; // this contains the page number minus one
 let lastPage = Math.ceil(searchedProducts.length / 20) ; // this is the number of pages calc by the array size
 
-let accName = "Shreef"; // saves account names
-let login = false; // boolean to check of loged in or not
-let admin = true; //boolean to check if admin or not
+const Admin = "admin"; // saves account names
+
+console.log(localStorage.getItem('Login'));
+console.log(localStorage.getItem('admin'));
 
 window.onscroll = function () { checkScrollPosition() }; // runs the function when page is scrolled
 
@@ -144,7 +144,7 @@ function account() {
     var regElement = document.getElementById("reg"); // get the div in header
     var logOutElement = document.getElementById("logOut"); // fet the div in header
 
-    if (!login) {
+    if (localStorage.getItem("Login") === "false" || !localStorage.getItem("Login")) {
         regElement.innerHTML = `
             <div>
                 <a class= "Register" id = "login1" href = "signup.html" > Sign-Up </a>
@@ -159,15 +159,15 @@ function account() {
             <div id = "Reg">
                 <h4> Welcome Back , </h4>
                 <br>
-                <h4>${accName}</h4>
+                <h4>${localStorage.getItem("name")}</h4>
             </div>
         `
 
         logOutElement.innerHTML = `
-            <a class="Register" id = "log-out" onclick="log(this.id)"> Log-Out </a>
+            <a class="Register" id = "log-out" onclick="log()"> Log-Out </a>
         `
 
-        if (admin) {
+        if (localStorage.getItem("admin") === "true" || !localStorage.getItem("admin")) {
             logOutElement.innerHTML += `
                 <a href = "addproduct.html" class="Register"> Add Product </a>
             `
@@ -179,17 +179,10 @@ function account() {
 
 }
 
-function log(status) {
-    if (status == "log-out") {
-        login = false;
-        admin = false;
-    }
-    else {
-        login = true;
-        admin = true;
-    } /* checks on the id of the link that was clicked
-        if it was log-out then it lagos out
-        else logins in*/
+function log() {
+    localStorage.setItem("admin" , false);
+    localStorage.setItem("Login" , false);
+
     account(); //runs the function to show the new buttons
 }
 
@@ -371,10 +364,17 @@ function validataform(){
 
 function checkcredentials(){
     let found =false;
+    if(Admin == document.getElementById("inputusername").value  && Admin == document.getElementById("inputpassword").value)
+    {
+        localStorage.setItem("admin" , true);
+        localStorage.setItem("name" , "admin");
+    }
     users.forEach(user=>{
         if (user.username == document.getElementById("inputusername").value  && user.password == document.getElementById("inputpassword").value) {
             window.location.href = "/Home.html";
             found = true;
+            localStorage.setItem("Login" , true);
+            localStorage.setItem("name" , user.username);
         }
     });
     if (!found) {
