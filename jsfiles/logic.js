@@ -2,6 +2,7 @@
 
 let productindexs = []; // array for the indexes that is searched
 
+var users =JSON.parse(localStorage.getItem('users')); //loads users data
 
 
 let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
@@ -192,6 +193,8 @@ function log(status) {
     account(); //runs the function to show the new buttons
 }
 
+//end of shop code
+
 /*Admin code*/
 
 function removeplaceholder(value){
@@ -210,7 +213,7 @@ function submitproduct(){
 
     var newproduct = {name, price, image: `./images/products/${myArray[myArray.length-1]}`};
     const storedProducts = localStorage.getItem("products");
-const productsArray = JSON.parse(storedProducts);
+    const productsArray = JSON.parse(storedProducts);
     productsArray.push(newproduct);
     localStorage.setItem('products', JSON.stringify(productsArray));}
 }
@@ -351,3 +354,30 @@ function displayusers(){
 
 }
 /*end admin code*/
+
+// login and sign up code
+
+function validataform(){
+    if (document.getElementById("email-input").value.indexOf('@gmail.com') == -1) {
+        alert("please enter valid email, eg: info@gmail.com");
+        return;
+    }
+    else{
+        users.push({username : document.getElementById("inputusername").value , email : document.getElementById("email-input").value  , password :document.getElementById("inputpassword").value });
+        localStorage.setItem('users', JSON.stringify(users));
+        window.location.href = "/login.html";
+    }
+}
+
+function checkcredentials(){
+    let found =false;
+    users.forEach(user=>{
+        if (user.username == document.getElementById("inputusername").value  && user.password == document.getElementById("inputpassword").value) {
+            window.location.href = "/Home.html";
+            found = true;
+        }
+    });
+    if (!found) {
+        alert("Account no found");
+    }
+}

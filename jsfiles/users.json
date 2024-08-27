@@ -1,3 +1,7 @@
 [
-    {"name" : "Shreef" , "Email" : "shefotemo4@gmail.com" , "password" : "Aa1212-"}
+    {"username" : "seif" , "email" : "seif@gmail.com" , "password" : "12345678"},
+
+    {"username" : "mohammed" , "email" : "mohammed@gmail.com" , "password" : "87654321"},
+
+    {"username" : "Ahmed" , "email" : "Ahmed@gmail.com" , "password" : "13579086"}
 ]

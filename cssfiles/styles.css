@@ -7,11 +7,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-<<<<<<< HEAD
-    background: url('img.jpg') no-repeat;
-=======
     background: url('/images/img.jpeg') no-repeat;
->>>>>>> d1cef896e376f774329190a0d7c281b810e007d4
     background-size: cover;
     background-position: center;
 }
