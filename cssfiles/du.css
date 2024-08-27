@@ -118,7 +118,7 @@ header ul li a:hover::after {
     z-index: 1;
 }
 
-.scroll-container {
+.scrollusers-container {
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -133,7 +133,7 @@ header ul li a:hover::after {
 
 }
 
-.scroll-content {
+.scrollusers-content {
     height: 400px; 
     overflow-y: auto;
     width: 100%;
