@@ -2,7 +2,7 @@
 
 let productindexs = []; // array for the indexes that is searched
 
-let products = JSON.parse(localStorage.getItem('products'));
+let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
 
 let searchedProducts = [].concat(products); //this array is the product data after being searched
 
@@ -10,7 +10,6 @@ let currentPage = 0; // this contains the page number minus one
 let lastPage = Math.ceil(searchedProducts.length / 20) ; // this is the number of pages calc by the array size
 
 let accName = "Shreef"; // saves account names
-
 let login = false; // boolean to check of loged in or not
 let admin = true; //boolean to check if admin or not
 
@@ -31,7 +30,7 @@ function checkScrollPosition() {
 }
 
 function shopProducts() {
-    var productShower = document.getElementsByClassName('products')[0]; //gets products data
+    var productShower = document.getElementById('shop'); //gets products data
     productShower.innerHTML = ""; //empties the html inside
 
     var pageStart = (currentPage + 1).toString(); // turns page number to string
@@ -69,33 +68,32 @@ function shopProducts() {
 
 
 function addToCart(productIndex) {
-    confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
+    var temp = confirm(`"${searchedProducts[productIndex + (currentPage * 20)].name}" added to cart!`);
     //confirms the payment
-
-    if(productindexs.length > 0)
-    {
-        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-            products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
+    if (temp) {
+        if (productindexs.length > 0) {
+            if ((productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+                products.splice(productindexs[(productIndex + (currentPage * 20))], 1);
+            }
+            productindexs = [];
         }
-        productindexs = [];
-    }
-    else
-    {
-        if ( (productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
-            products.splice([(productIndex + (currentPage * 20))], 1);
-        }
-    }/* checks if you searched or didn't search 
+        else {
+            if ((productIndex + (currentPage * 20)) >= 0 && (productIndex + (currentPage * 20)) < searchedProducts.length) {
+                products.splice([(productIndex + (currentPage * 20))], 1);
+            }
+        }/* checks if you searched or didn't search 
         if yes gets the index from the product indexs array and remvoes it from product array
         if not get the index and removes it from product array*/
 
 
-    searchedProducts = [].concat(products); // updates seached products array
-    localStorage.setItem('products', JSON.stringify(products));
+        searchedProducts = [].concat(products); // updates seached products array
+        localStorage.setItem('products', JSON.stringify(products));
+    }
     shopProducts(); //returns to the shop
 }
 
 function pageChanger(buttonId) {
-    if (document.getElementById(buttonId).value == "Next") {
+    if (buttonId == "next") {
         if (currentPage + 1 == lastPage) {
             alert("It's The Last Page");
         }
@@ -103,7 +101,7 @@ function pageChanger(buttonId) {
             currentPage++;
         } //checks if its the last page to send alert or add a page
     }
-    else if (document.getElementById(buttonId).value == "Back") {
+    else if (buttonId == "back") {
         if (currentPage == 0) {
             alert("It's The First Page");
         }
