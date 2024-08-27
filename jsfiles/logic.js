@@ -364,11 +364,16 @@ function validataform(){
 
 function checkcredentials(){
     let found =false;
+
     if(Admin == document.getElementById("inputusername").value  && Admin == document.getElementById("inputpassword").value)
     {
+        localStorage.setItem("Login" , true);
         localStorage.setItem("admin" , true);
         localStorage.setItem("name" , "admin");
+        window.location.href = "/Home.html";
+        return;
     }
+
     users.forEach(user=>{
         if (user.username == document.getElementById("inputusername").value  && user.password == document.getElementById("inputpassword").value) {
             window.location.href = "/Home.html";
