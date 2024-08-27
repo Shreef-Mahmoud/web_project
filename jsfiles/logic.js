@@ -2,8 +2,10 @@
 
 let productindexs = []; // array for the indexes that is searched
 
-let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
 
+
+let products = JSON.parse(localStorage.getItem('products')); // all products of the store being loaded
+// if(localStorage.getItem("products")==null){ products = "[]"}
 let searchedProducts = [].concat(products); //this array is the product data after being searched
 
 let currentPage = 0; // this contains the page number minus one
@@ -204,10 +206,13 @@ function submitproduct(){
     var name = document.getElementById("name").value;
     var price = document.getElementById("price").value;
     var photo = document.getElementById("photo").value;
+    let myArray = photo.split("\\");
 
-    var newproduct = {name, price, image: photo};
-    products.push(newproduct);
-    localStorage.setItem('products', JSON.stringify(products));}
+    var newproduct = {name, price, image: `./images/products/${myArray[myArray.length-1]}`};
+    const storedProducts = localStorage.getItem("products");
+const productsArray = JSON.parse(storedProducts);
+    productsArray.push(newproduct);
+    localStorage.setItem('products', JSON.stringify(productsArray));}
 }
 
 
@@ -304,7 +309,7 @@ function displayusers(){
         var temp=confirm("Are you sure that you want delete "+users[index].name+"?");
     if(temp==true){
         users.splice(index, 1);  // Remove the item from the array
-        displayproducts(); 
+        displayusers(); 
      } // Refresh the displayed list
     }
 
@@ -315,15 +320,15 @@ function displayusers(){
         div.className = 'item';
 
         // Create an img element
-        const img = document.createElement('img');
-        img.src = item.image;
+        const username = document.createTextNode(item.username);
 
         // Create a text node
-        const text = document.createTextNode(item.name);
+        const useremail = document.createTextNode(item.email);
 
         // Append img and text to the div
-        div.appendChild(img);
-        div.appendChild(text);
+        div.appendChild(username);
+        document.write(' ')
+        div.appendChild(useremail);
 
         // Add click event to handle item selection
         div.addEventListener('click', () => selectItem(item.name));

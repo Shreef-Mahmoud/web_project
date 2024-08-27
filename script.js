@@ -18,7 +18,7 @@ function checkcredentials(inputusername,inputpassword){
     users.forEach(user=>{
         if (user.username === inputusername && user.password===inputpassword) {
             <a href="Home.html">Home</a>
-            found =true;
+            found = true;
         }
     });
     if (!found) {

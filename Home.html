@@ -2,17 +2,16 @@
 <html lang="en">
 
 <head>
-
     <title>Football T-Shirts Store</title>
-    <link rel="stylesheet" href="cssfiles/shop.css">
+    <link rel="stylesheet" href="cssfiles/home.css">
+    <script type="text/javascript" src="jsfiles/home.js"></script>
     <script type="text/javascript" src="jsfiles/logic.js"></script>
     <link rel="icon" type="image/x-icon" href="/images/Logo.png">
 </head>
 
-<body onload="shopProducts(); account();">
+<body >
 
-    <header id = "header">
-
+    <header id="header">
         <div class="logo">
             <img src="images/Logo.png" alt="Store Logo">
         </div>
@@ -25,36 +24,32 @@
             </ul>
         </nav>
 
-        <div id = "reg"></div>
-
-        <div id = "logOut"></div>
-
+        <div id="reg"></div>
+        <div id="logOut"></div>
     </header>
-
 
     <section id="home" class="about">
         <h1>Welcome to Football T-Shirts Store</h1>
         <p>Your one-stop shop for the latest football t-shirts!</p>
     </section>
 
-    <section class ="productHeader" id = "productHeader">
+    <section class="productHeader" id="productHeader">
         <h1>T-Shirts</h1>
-
         <form>
-            <input type="text" id = "searched" onkeyup="search(this.id)"/> 
-            <label for = "searched" id = "serachlabel">Search</labelf>
+            <input type="text" id="searched" onkeyup="search(this.id)" />
+            <label for="searched" id="serachlabel">Search</label>
         </form>
-
     </section>
 
-    <section id="shop" class="products">
+    <section id="home" class="pro">
+        <!-- Products will be dynamically inserted here by JavaScript -->
     </section>
+    <h1>latest t-shirts</h1>
+    <div class="scrollmenu">
+       
+      </div>
 
-    <footer class = "page">
-        <input type="button" id="back" value = "Back" class="element"onclick="pageChanger(this.id)" >
-        <h2 id = "pageNumber" class="element"></h2>
-        <input type="button" id ="next" value = "Next" class="element" onclick="pageChanger(this.id)">
-    </footer>
+   
 
 </body>
 
