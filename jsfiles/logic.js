@@ -309,7 +309,7 @@ function displayusers(){
         var temp=confirm("Are you sure that you want delete "+users[index].name+"?");
     if(temp==true){
         users.splice(index, 1);  // Remove the item from the array
-        displayproducts(); 
+        displayusers(); 
      } // Refresh the displayed list
     }
 
@@ -320,15 +320,14 @@ function displayusers(){
         div.className = 'item';
 
         // Create an img element
-        const img = document.createElement('img');
-        img.src = item.image;
+        const username = document.createTextNode(item.username);
 
         // Create a text node
-        const text = document.createTextNode(item.name);
+        const useremail = document.createTextNode(item.email);
 
         // Append img and text to the div
-        div.appendChild(img);
-        div.appendChild(text);
+        div.appendChild(username);
+        div.appendChild(useremail);
 
         // Add click event to handle item selection
         div.addEventListener('click', () => selectItem(item.name));
